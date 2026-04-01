@@ -1,0 +1,91 @@
+[2026-03-26T19:58:33.820Z] [INFO] [main] ╔══════════════════════════════════════════╗
+[2026-03-26T19:58:33.821Z] [INFO] [main] ║  Practice Fusion -> SubQDocs Import      ║
+[2026-03-26T19:58:33.821Z] [INFO] [main] ╚══════════════════════════════════════════╝
+[2026-03-26T19:58:34.644Z] [INFO] [main] Database connection successful
+[2026-03-26T19:58:34.644Z] [INFO] [phase1/organization] Checking for existing organization...
+[2026-03-26T19:58:34.654Z] [INFO] [phase1/organization] Organization already exists: id=7, name="Omeed Ahadiat Dermatology"
+[2026-03-26T19:58:34.654Z] [INFO] [main] Loading existing ID maps from Phase 1 & 2...
+[2026-03-26T19:58:34.667Z] [INFO] [main] Loaded maps: 4439 patients, 2 providers, 10759 encounters, 562 lab orders
+[2026-03-26T19:58:34.667Z] [INFO] [main] ═══ PHASE 3: Config & Clinical Enrichment ═══
+[2026-03-26T19:58:34.667Z] [INFO] [phase3/user-office-locations] Starting user-office-locations import...
+[2026-03-26T19:58:34.679Z] [INFO] [phase3/user-office-locations] Linked user=9 -> office=7
+[2026-03-26T19:58:34.682Z] [INFO] [phase3/user-office-locations] Linked user=9 -> office=8
+[2026-03-26T19:58:34.686Z] [INFO] [phase3/user-office-locations] Linked user=10 -> office=7
+[2026-03-26T19:58:34.690Z] [INFO] [phase3/user-office-locations] Linked user=10 -> office=8
+[2026-03-26T19:58:34.690Z] [INFO] [phase3/user-office-locations] Complete: 4 total, 4 imported, 0 updated, 0 skipped, 0 errored
+[2026-03-26T19:58:34.690Z] [INFO] [phase3/visit-types] Starting visit types import...
+[2026-03-26T19:58:34.696Z] [INFO] [phase3/visit-types] Created visit type: "Follow-up Visit"
+[2026-03-26T19:58:34.699Z] [INFO] [phase3/visit-types] Created visit type: "General"
+[2026-03-26T19:58:34.703Z] [INFO] [phase3/visit-types] Created visit type: "Evaluation of Skin Lesion"
+[2026-03-26T19:58:34.706Z] [INFO] [phase3/visit-types] Created visit type: "Acne Evaluation"
+[2026-03-26T19:58:34.710Z] [INFO] [phase3/visit-types] Created visit type: "Rash"
+[2026-03-26T19:58:34.714Z] [INFO] [phase3/visit-types] Created visit type: "Hair Loss (Alopecia)"
+[2026-03-26T19:58:34.717Z] [INFO] [phase3/visit-types] Created visit type: "Warts (Verruca)"
+[2026-03-26T19:58:34.720Z] [INFO] [phase3/visit-types] Created visit type: "Molluscum"
+[2026-03-26T19:58:34.722Z] [INFO] [phase3/visit-types] Created visit type: "Skin Infection"
+[2026-03-26T19:58:34.726Z] [INFO] [phase3/visit-types] Created visit type: "Cosmetic Treatment"
+[2026-03-26T19:58:34.729Z] [INFO] [phase3/visit-types] Created visit type: "Skin Cancer Screening (Full Body Skin Exam)"
+[2026-03-26T19:58:34.731Z] [INFO] [phase3/visit-types] Created visit type: "Discoloration (Vitiligo)"
+[2026-03-26T19:58:34.734Z] [INFO] [phase3/visit-types] Created visit type: "Discoloration (Hyperigmentation / Melasma)"
+[2026-03-26T19:58:34.737Z] [INFO] [phase3/visit-types] Created visit type: "Nail Disorder"
+[2026-03-26T19:58:34.737Z] [INFO] [phase3/visit-types] Complete: 14 total, 14 imported, 0 updated, 0 skipped, 0 errored
+[2026-03-26T19:58:34.737Z] [INFO] [phase3/global-questions] Starting global questions import...
+[2026-03-26T19:58:34.742Z] [INFO] [phase3/global-questions] Created question: "What brings you in today?"
+[2026-03-26T19:58:34.744Z] [INFO] [phase3/global-questions] Created question: "Do you have any other medical conditions (diabetes, psoriasis, etc.)?"
+[2026-03-26T19:58:34.747Z] [INFO] [phase3/global-questions] Created question: "Are you currently taking any medications?"
+[2026-03-26T19:58:34.750Z] [INFO] [phase3/global-questions] Created question: "Do you have any known allergies?"
+[2026-03-26T19:58:34.752Z] [INFO] [phase3/global-questions] Created question: "Are you currently pregnant or breastfeeding?"
+[2026-03-26T19:58:34.755Z] [INFO] [phase3/global-questions] Created question: "Do you have a history of skin cancer? If yes, what kind?"
+[2026-03-26T19:58:34.757Z] [INFO] [phase3/global-questions] Created question: "Do you have a history of immunosuppression?"
+[2026-03-26T19:58:34.760Z] [INFO] [phase3/global-questions] Created question: "Do you have a pacemaker?"
+[2026-03-26T19:58:34.762Z] [INFO] [phase3/global-questions] Created question: "Do you have any joint replacements?"
+[2026-03-26T19:58:34.762Z] [INFO] [phase3/global-questions] Complete: 9 total, 9 imported, 0 updated, 0 skipped, 0 errored
+[2026-03-26T19:58:34.763Z] [INFO] [phase3/organization-update] Updating organization fields...
+[2026-03-26T19:58:34.767Z] [INFO] [phase3/organization-update] Updated organization: {"npi":"1497250955"}
+[2026-03-26T19:58:34.767Z] [INFO] [phase3/encounter-events] Starting encounter events import...
+[2026-03-26T19:58:35.085Z] [INFO] [phase3/encounter-events] Parsed events: 0 encounters with vitals, 10759 with other events
+[2026-03-26T19:58:41.819Z] [INFO] [phase3/encounter-events] Complete: 53796 total, 10759 imported, 0 updated, 0 skipped, 0 errored
+[2026-03-26T19:58:41.819Z] [INFO] [phase3/encounter-diagnoses] Starting encounter-diagnoses link import...
+[2026-03-26T19:58:41.877Z] [INFO] [phase3/encounter-diagnoses] Found 41697 encounter-diagnosis links
+[2026-03-26T19:58:41.900Z] [INFO] [phase3/encounter-diagnoses] Grouped diagnoses for 10074 encounters (0 skipped)
+[2026-03-26T19:58:47.747Z] [INFO] [phase3/encounter-diagnoses] Complete: 41697 total, 10074 imported, 0 updated, 0 skipped, 0 errored
+[2026-03-26T19:58:47.747Z] [INFO] [phase3/encounter-addendums] Starting encounter addendums import...
+[2026-03-26T19:58:47.748Z] [INFO] [phase3/encounter-addendums] Found 144 addendum records
+[2026-03-26T19:58:47.749Z] [INFO] [phase3/encounter-addendums] Grouped addendums for 139 encounters
+[2026-03-26T19:58:47.829Z] [INFO] [phase3/encounter-addendums] Complete: 144 total, 139 imported, 0 updated, 0 skipped, 0 errored
+[2026-03-26T19:58:47.829Z] [INFO] [phase3/encounter-observations] Starting encounter observations import...
+[2026-03-26T19:58:47.830Z] [INFO] [phase3/encounter-observations] Found 120 observation records
+[2026-03-26T19:58:47.830Z] [INFO] [phase3/encounter-observations] Grouped observations for 40 encounters
+[2026-03-26T19:58:47.854Z] [INFO] [phase3/encounter-observations] Complete: 120 total, 40 imported, 0 updated, 0 skipped, 0 errored
+[2026-03-26T19:58:47.854Z] [INFO] [phase3/encounter-medications] Starting encounter-medications link import...
+[2026-03-26T19:58:47.863Z] [INFO] [phase3/encounter-medications] Found 5746 encounter-medication links
+[2026-03-26T19:58:47.867Z] [INFO] [phase3/encounter-medications] Grouped medications for 3440 encounters
+[2026-03-26T19:58:49.848Z] [INFO] [phase3/encounter-medications] Complete: 5746 total, 3440 imported, 0 updated, 20 skipped, 0 errored
+[2026-03-26T19:58:49.848Z] [INFO] [phase3/health-concerns] Starting health concerns import...
+[2026-03-26T19:58:49.849Z] [INFO] [phase3/health-concerns] Found 24 health concern records
+[2026-03-26T19:58:49.849Z] [INFO] [phase3/health-concerns] Grouped concerns for 24 patients
+[2026-03-26T19:58:49.865Z] [INFO] [phase3/health-concerns] Complete: 24 total, 24 imported, 0 updated, 0 skipped, 0 errored
+[2026-03-26T19:58:49.865Z] [INFO] [phase3/med-history] Starting medical history import...
+[2026-03-26T19:58:49.866Z] [INFO] [phase3/med-history] Found 11 med history records
+[2026-03-26T19:58:49.866Z] [INFO] [phase3/med-history] Grouped history for 7 patients
+[2026-03-26T19:58:49.883Z] [INFO] [phase3/med-history] Complete: 11 total, 7 imported, 0 updated, 0 skipped, 0 errored
+[2026-03-26T19:58:49.883Z] [INFO] [phase3/patient-conditions] Starting patient conditions import...
+[2026-03-26T19:58:49.884Z] [INFO] [phase3/patient-conditions] Found 4 condition records
+[2026-03-26T19:58:49.887Z] [INFO] [phase3/patient-conditions] Complete: 4 total, 0 imported, 0 updated, 4 skipped, 0 errored
+[2026-03-26T19:58:49.887Z] [INFO] [phase3/pinned-notes] Starting pinned notes import...
+[2026-03-26T19:58:49.888Z] [INFO] [phase3/pinned-notes] Found 6 pinned note records
+[2026-03-26T19:58:49.888Z] [INFO] [phase3/pinned-notes] Grouped pinned notes for 6 patients
+[2026-03-26T19:58:49.892Z] [INFO] [phase3/pinned-notes] Complete: 6 total, 6 imported, 0 updated, 0 skipped, 0 errored
+[2026-03-26T19:58:49.893Z] [INFO] [phase3/lab-result-notes] Starting lab result notes import...
+[2026-03-26T19:58:49.894Z] [INFO] [phase3/lab-result-notes] Found 557 lab result notes
+[2026-03-26T19:58:49.920Z] [INFO] [phase3/lab-result-notes] Collected notes for 498 patients (557 result notes, 15941 observation notes)
+[2026-03-26T19:58:50.242Z] [WARN] [phase3/lab-result-notes] 402 patients had result notes but no lab orders in SubQDocs
+[2026-03-26T19:58:50.243Z] [INFO] [phase3/lab-result-notes] Complete: 498 total, 96 imported, 0 updated, 475 skipped, 0 errored
+[2026-03-26T19:58:50.243Z] [INFO] [phase3/lab-order-diagnoses] Starting lab order item diagnoses import...
+[2026-03-26T19:58:50.246Z] [INFO] [phase3/lab-order-diagnoses] Found 1949 lab order item diagnosis records
+[2026-03-26T19:58:50.247Z] [INFO] [phase3/lab-order-diagnoses] Grouped diagnoses for 535 lab orders
+[2026-03-26T19:58:50.866Z] [INFO] [phase3/lab-order-diagnoses] Complete: 1949 total, 535 imported, 0 updated, 0 skipped, 0 errored
+[2026-03-26T19:58:50.866Z] [INFO] [main] ═══ PHASE 3 COMPLETE ═══
+[2026-03-26T19:58:50.866Z] [INFO] [main] ╔══════════════════════════════════════════╗
+[2026-03-26T19:58:50.866Z] [INFO] [main] ║  IMPORT COMPLETE                         ║
+[2026-03-26T19:58:50.866Z] [INFO] [main] ╚══════════════════════════════════════════╝

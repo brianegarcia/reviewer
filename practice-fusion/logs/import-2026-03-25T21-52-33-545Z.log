@@ -1,0 +1,32 @@
+[2026-03-25T21:52:33.668Z] [INFO] [main] Running remaining step: lab orders
+[2026-03-25T21:52:35.346Z] [INFO] [main] DB connected
+[2026-03-25T21:52:35.350Z] [INFO] [main] Maps: 4439 patients
+[2026-03-25T21:52:35.351Z] [INFO] [phase2/lab-orders] Starting lab orders import...
+[2026-03-25T21:52:35.361Z] [INFO] [phase2/lab-orders] Loaded 1857 lab order items for 539 orders
+[2026-03-25T21:52:35.455Z] [INFO] [phase2/lab-orders] Loaded 13540 observations for 761 results
+[2026-03-25T21:52:35.458Z] [INFO] [phase2/lab-orders] Found 562 lab orders
+[2026-03-25T21:52:35.492Z] [ERROR] [phase2/lab-orders] Lab order 4f34183d-3050-4daa-b248-9082c780e97f: null value in column "tests" of relation "lab_orders" violates not-null constraint
+[2026-03-25T21:52:35.507Z] [ERROR] [phase2/lab-orders] Lab order c3d470df-1448-4428-be82-92eb8ac017a2: null value in column "tests" of relation "lab_orders" violates not-null constraint
+[2026-03-25T21:52:35.514Z] [ERROR] [phase2/lab-orders] Lab order 230fa21c-7517-47ef-bf6d-fb85594345e5: null value in column "tests" of relation "lab_orders" violates not-null constraint
+[2026-03-25T21:52:35.539Z] [ERROR] [phase2/lab-orders] Lab order ae63ca77-4126-454b-813a-4519a59b757c: null value in column "tests" of relation "lab_orders" violates not-null constraint
+[2026-03-25T21:52:35.575Z] [ERROR] [phase2/lab-orders] Lab order a7a30d5d-a408-4ce4-a1f2-b8fbfc4a7c47: null value in column "tests" of relation "lab_orders" violates not-null constraint
+[2026-03-25T21:52:35.587Z] [ERROR] [phase2/lab-orders] Lab order 14f8192a-36d0-4454-afdd-9d9583262459: null value in column "tests" of relation "lab_orders" violates not-null constraint
+[2026-03-25T21:52:35.624Z] [ERROR] [phase2/lab-orders] Lab order 08cb58ac-ed6d-4b75-9a1b-4a05dade345e: null value in column "tests" of relation "lab_orders" violates not-null constraint
+[2026-03-25T21:52:35.655Z] [ERROR] [phase2/lab-orders] Lab order 3132ed45-2885-48f2-afc9-0489f1f302b5: null value in column "tests" of relation "lab_orders" violates not-null constraint
+[2026-03-25T21:52:35.663Z] [ERROR] [phase2/lab-orders] Lab order 5cd26e94-f26f-4498-b89a-a7188ea5326f: null value in column "tests" of relation "lab_orders" violates not-null constraint
+[2026-03-25T21:52:35.672Z] [ERROR] [phase2/lab-orders] Lab order 3353268d-14c8-4273-88bb-43198ed96778: null value in column "tests" of relation "lab_orders" violates not-null constraint
+[2026-03-25T21:52:35.731Z] [ERROR] [phase2/lab-orders] Lab order ce8976dd-dd96-4309-8dbb-cb0ad6cf800d: null value in column "tests" of relation "lab_orders" violates not-null constraint
+[2026-03-25T21:52:35.738Z] [ERROR] [phase2/lab-orders] Lab order 44432601-c4f3-4939-a95f-aec27200dadd: null value in column "tests" of relation "lab_orders" violates not-null constraint
+[2026-03-25T21:52:35.744Z] [ERROR] [phase2/lab-orders] Lab order b4c3791f-fd7f-4668-8933-54fdd494f5b9: null value in column "tests" of relation "lab_orders" violates not-null constraint
+[2026-03-25T21:52:35.811Z] [ERROR] [phase2/lab-orders] Lab order 9b2b650c-a5a2-45b1-aee5-f0175bcee492: null value in column "tests" of relation "lab_orders" violates not-null constraint
+[2026-03-25T21:52:35.879Z] [ERROR] [phase2/lab-orders] Lab order e50e26f1-e924-4506-bc41-5f9adaef8aa0: null value in column "tests" of relation "lab_orders" violates not-null constraint
+[2026-03-25T21:52:35.887Z] [ERROR] [phase2/lab-orders] Lab order ce88ce94-2d44-4486-8db6-ee5b553fd83f: null value in column "tests" of relation "lab_orders" violates not-null constraint
+[2026-03-25T21:52:35.919Z] [ERROR] [phase2/lab-orders] Lab order cc629788-5eaf-4784-b30a-a83b6424cbb4: null value in column "tests" of relation "lab_orders" violates not-null constraint
+[2026-03-25T21:52:35.947Z] [ERROR] [phase2/lab-orders] Lab order f585e323-2ea4-4c8e-a6ed-02ef12e25c47: null value in column "tests" of relation "lab_orders" violates not-null constraint
+[2026-03-25T21:52:36.023Z] [ERROR] [phase2/lab-orders] Lab order 1b53af26-d7a0-49ef-a965-c4d5d156752d: null value in column "tests" of relation "lab_orders" violates not-null constraint
+[2026-03-25T21:52:36.196Z] [ERROR] [phase2/lab-orders] Lab order 5edf3069-d381-481f-9ea7-bb2c8e348a37: null value in column "tests" of relation "lab_orders" violates not-null constraint
+[2026-03-25T21:52:36.204Z] [ERROR] [phase2/lab-orders] Lab order a39a19bf-4840-4c7f-bb4f-09615b2d2b04: null value in column "tests" of relation "lab_orders" violates not-null constraint
+[2026-03-25T21:52:36.236Z] [ERROR] [phase2/lab-orders] Lab order 45928821-361d-493b-8ed7-5f7cf44e0212: null value in column "tests" of relation "lab_orders" violates not-null constraint
+[2026-03-25T21:52:36.240Z] [ERROR] [phase2/lab-orders] Lab order 1ffe68c7-5679-44d2-9969-c90b129f9228: null value in column "tests" of relation "lab_orders" violates not-null constraint
+[2026-03-25T21:52:36.249Z] [INFO] [phase2/lab-orders] Complete: 562 total, 539 imported, 0 updated, 0 skipped, 23 errored
+[2026-03-25T21:52:36.250Z] [INFO] [main] Done!
