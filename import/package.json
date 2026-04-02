@@ -1,0 +1,19 @@
+{
+  "name": "@subqdocs/import-framework",
+  "version": "1.0.0",
+  "description": "Multi-source import framework for SubQDocs - generates idempotent SQL from EHR export files",
+  "private": true,
+  "scripts": {
+    "practice-fusion": "ts-node -P import/tsconfig.json import/run.ts --source practice-fusion",
+    "build": "tsc -p import/tsconfig.json"
+  },
+  "dependencies": {
+    "uuid": "^9.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "@types/uuid": "^9.0.0",
+    "ts-node": "^10.9.0",
+    "typescript": "^5.0.0"
+  }
+}
