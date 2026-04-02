@@ -1,0 +1,14 @@
+/**
+ * HTML helpers for building styled content stored in full_note_details JSON fields.
+ *
+ * Mirrors practice-fusion/lib/html-helpers.ts exactly.
+ */
+
+const POPPINS_STYLE = `<style>@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap'); body { font-family: 'Poppins', sans-serif; }</style>`;
+
+/**
+ * Wraps inner HTML in the standard Poppins-styled section used by full_note_details.
+ */
+export function wrapHtml(inner: string): string {
+  return `${POPPINS_STYLE}<section style='font-size:16px; font-family: Poppins, sans-serif; color:#757575;'>${inner}</section>`;
+}
