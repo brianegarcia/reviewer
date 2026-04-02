@@ -28,7 +28,6 @@ import { importUserOfficeLocations } from "./phase1/07-user-office-locations";
 // Phase 2
 import { importMedications } from "./phase2/08-medications";
 import { importEncounters } from "./phase2/09-encounters";
-import { importDiagnoses } from "./phase2/10-diagnoses";
 import { importPrescriptions } from "./phase2/11-prescriptions";
 import { importLabOrders } from "./phase2/12-lab-orders";
 
@@ -59,6 +58,7 @@ import { updateBillTotals } from "./phase4/33-update-bill-totals";
 
 // ID Maps (for re-runs that skip Phase 1)
 import { IdMap } from "./lib/id-map";
+import { buildDiagnosisLookup, buildMedicationLookup } from "./lib/lookup-maps";
 
 async function runPhase1() {
     logger.info("main", "═══ PHASE 1: Core Data ═══");
@@ -84,6 +84,9 @@ async function runPhase1() {
     // Step 07: Link providers to office locations
     await importUserOfficeLocations(facilityMap, providerMap);
 
+    // Step 13: Visit Types (needed before encounters in phase 2)
+    await importVisitTypes();
+
     logger.info("main", "═══ PHASE 1 COMPLETE ═══");
     return { facilityMap, providerMap, profileMap, userMap, patientMap };
 }
@@ -102,14 +105,11 @@ async function runPhase2(maps: {
     // Step 09: Encounters -> visits + notes + full_note
     const encounterMap = await importEncounters(maps.patientMap, maps.providerMap, maps.facilityMap);
 
-    // Step 10: Diagnoses
-    await importDiagnoses(maps.patientMap);
-
     // Step 11: Prescriptions
     await importPrescriptions(maps.patientMap, maps.providerMap);
 
     // Step 12: Lab Orders
-    await importLabOrders(maps.patientMap, maps.profileMap);
+    await importLabOrders(maps.patientMap, maps.profileMap, encounterMap, maps.facilityMap);
 
     logger.info("main", "═══ PHASE 2 COMPLETE ═══");
     return { encounterMap };
@@ -129,20 +129,24 @@ async function runPhase3(maps: {
     // Step 14: Global Questions
     await importGlobalQuestions();
 
-    // Step 15: Encounter Events (vitals, procedures) -> enrich full_note
+    // Build lookup maps for diagnosis/medication name resolution
+    const diagnosisLookup = await buildDiagnosisLookup();
+    const medicationLookup = await buildMedicationLookup();
+
+    // Step 15: Encounter Events (vitals, procedures) -> full_note_details.exam
     await importEncounterEvents(maps.patientMap, maps.encounterMap);
 
-    // Step 16: Encounter-Diagnosis links -> enrich full_note
-    await importEncounterDiagnoses(maps.encounterMap);
+    // Step 16: Encounter-Diagnosis links -> full_note_details.impressions_and_plan
+    await importEncounterDiagnoses(maps.encounterMap, diagnosisLookup);
 
-    // Step 17: Encounter Addendums -> enrich full_note
+    // Step 17: Encounter Addendums -> full_note_details.addendums
     await importEncounterAddendums(maps.encounterMap, maps.providerMap);
 
-    // Step 18: Encounter Observations (physical exam) -> enrich full_note
+    // Step 18: Encounter Observations (physical exam) -> appends to full_note_details.exam
     await importEncounterObservations(maps.encounterMap);
 
-    // Step 19: Encounter-Medication links -> enrich full_note
-    await importEncounterMedications(maps.encounterMap);
+    // Step 19: Encounter-Medication links -> full_note_details.medications_html
+    await importEncounterMedications(maps.encounterMap, medicationLookup);
 
     // Step 20: Health Concerns -> diagnosis_timeline.alerts
     await importHealthConcerns(maps.patientMap);

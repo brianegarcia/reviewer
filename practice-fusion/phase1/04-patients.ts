@@ -9,6 +9,18 @@ import { getSequelize } from "../lib/db";
 
 const CTX = "phase1/patients";
 
+function calculateAge(birthDate: string | null): number | null {
+    if (!birthDate) return null;
+    const birth = new Date(birthDate);
+    const today = new Date();
+    let age = today.getFullYear() - birth.getFullYear();
+    const monthDiff = today.getMonth() - birth.getMonth();
+    if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birth.getDate())) {
+        age--;
+    }
+    return age;
+}
+
 function mapPatientRow(row: TsvRow): Record<string, any> | null {
     const firstName = emptyToNull(row.FirstName);
     const lastName = emptyToNull(row.LastName);
@@ -25,6 +37,7 @@ function mapPatientRow(row: TsvRow): Record<string, any> | null {
         preferred_name: truncate(emptyToNull(row.PreferredName), 100),
         gender: mapGender(row.Gender),
         date_of_birth: parseDateString(row.BirthDate),
+        age: row.BirthDate ? calculateAge(parseDateString(row.BirthDate)) : null,
         street_address: emptyToNull(row.Address1),
         city: emptyToNull(row.AddressCity),
         state: emptyToNull(row.AddressState),

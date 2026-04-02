@@ -4,19 +4,17 @@ import { IdMap } from "../lib/id-map";
 import { logger } from "../lib/logger";
 import { emptyToNull } from "../lib/validators";
 import { getSequelize } from "../lib/db";
+import { wrapHtml } from "../lib/html-helpers";
 
 const CTX = "phase3/encounter-events";
 
 interface VitalSign {
-    code: string;
     name: string;
     value: string;
-    units?: string;
     date: string | null;
 }
 
 interface EventEntry {
-    guid: string;
     name: string;
     description: string;
     category: string;
@@ -24,20 +22,42 @@ interface EventEntry {
     value: string | null;
     comments: string | null;
     date: string | null;
-    vitalSignCode: string | null;
+}
+
+function buildVitalsHtml(vitals: VitalSign[]): string {
+    const items = vitals
+        .map((v) => `<li><strong>${v.name}:</strong> ${v.value}</li>`)
+        .join("");
+    return `<p><strong>Vitals:</strong></p><ul>${items}</ul>`;
+}
+
+function buildEventsHtml(events: EventEntry[]): string {
+    const items = events
+        .map((e) => {
+            let detail = e.name;
+            if (e.description) detail += ` &mdash; ${e.description}`;
+            const meta: string[] = [];
+            if (e.category) meta.push(`Category: ${e.category}`);
+            if (e.status) meta.push(`Status: ${e.status}`);
+            if (e.value) meta.push(`Value: ${e.value}`);
+            if (meta.length > 0) detail += ` (${meta.join(", ")})`;
+            if (e.comments) detail += `<br/><em>${e.comments}</em>`;
+            return `<li>${detail}</li>`;
+        })
+        .join("");
+    return `<p><strong>Encounter Events:</strong></p><ul>${items}</ul>`;
 }
 
 /**
  * Imports encounter events (vitals, procedures, observations) from Practice Fusion.
- * Enriches existing full_note records with vitals and encounter_events data in full_note_details JSON.
+ * Writes exam HTML into full_note_details.exam.
  */
 export async function importEncounterEvents(
-    patientMap: IdMap,
+    _patientMap: IdMap,
     encounterMap: IdMap
 ): Promise<void> {
     logger.info(CTX, "Starting encounter events import...");
 
-    // Group events by encounter
     const eventsByEncounter = new Map<string, EventEntry[]>();
     const vitalsByEncounter = new Map<string, VitalSign[]>();
 
@@ -52,16 +72,13 @@ export async function importEncounterEvents(
             }
 
             const vitalCode = emptyToNull(row.VitalSignCode);
-            const category = emptyToNull(row.EventCategory) || "";
             const value = emptyToNull(row.ResultValue);
 
-            // Separate vitals from other events
             if (vitalCode && value) {
                 if (!vitalsByEncounter.has(encounterGuid)) {
                     vitalsByEncounter.set(encounterGuid, []);
                 }
                 vitalsByEncounter.get(encounterGuid)!.push({
-                    code: vitalCode,
                     name: emptyToNull(row.EventName) || vitalCode,
                     value,
                     date: emptyToNull(row.StartDateTimeUtc),
@@ -71,15 +88,13 @@ export async function importEncounterEvents(
                     eventsByEncounter.set(encounterGuid, []);
                 }
                 eventsByEncounter.get(encounterGuid)!.push({
-                    guid: row.EncounterEventGuid || "",
                     name: emptyToNull(row.EventName) || "",
                     description: emptyToNull(row.EventDescription) || "",
-                    category,
+                    category: emptyToNull(row.EventCategory) || "",
                     status: emptyToNull(row.StatusDescription) || "",
                     value,
                     comments: emptyToNull(row.EventComments),
                     date: emptyToNull(row.StartDateTimeUtc),
-                    vitalSignCode: vitalCode,
                 });
             }
         }
@@ -88,8 +103,6 @@ export async function importEncounterEvents(
     stats.total = totalRows;
     logger.info(CTX, `Parsed events: ${vitalsByEncounter.size} encounters with vitals, ${eventsByEncounter.size} with other events`);
 
-    // Update full_note_details for each encounter using raw SQL
-    // (Sequelize doesn't detect JSON mutations on the same object reference)
     const sequelize = getSequelize();
     const allEncounterGuids = new Set([...vitalsByEncounter.keys(), ...eventsByEncounter.keys()]);
 
@@ -101,14 +114,16 @@ export async function importEncounterEvents(
             const vitals = vitalsByEncounter.get(encounterGuid);
             const events = eventsByEncounter.get(encounterGuid);
 
-            let mergeObj: Record<string, any> = {};
-            if (vitals && vitals.length > 0) mergeObj.vitals = vitals;
-            if (events && events.length > 0) mergeObj.encounterEvents = events;
+            let innerHtml = "";
+            if (vitals && vitals.length > 0) innerHtml += buildVitalsHtml(vitals);
+            if (events && events.length > 0) innerHtml += buildEventsHtml(events);
+
+            const examHtml = wrapHtml(innerHtml);
 
             await sequelize.query(
                 `UPDATE full_note SET full_note_details = COALESCE(full_note_details::jsonb, '{}'::jsonb) || $1::jsonb, updated_at = NOW()
                  WHERE visit_id = $2 AND is_current = true AND deleted_at IS NULL`,
-                { bind: [JSON.stringify(mergeObj), visitId] }
+                { bind: [JSON.stringify({ exam: examHtml }), visitId] }
             );
             stats.imported++;
         } catch (err: any) {

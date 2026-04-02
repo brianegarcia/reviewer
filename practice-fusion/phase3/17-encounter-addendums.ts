@@ -4,6 +4,7 @@ import { IdMap } from "../lib/id-map";
 import { logger } from "../lib/logger";
 import { emptyToNull, cleanPfHtml } from "../lib/validators";
 import { getSequelize } from "../lib/db";
+import { wrapHtml } from "../lib/html-helpers";
 
 const CTX = "phase3/encounter-addendums";
 
@@ -36,7 +37,7 @@ export async function importEncounterAddendums(
             addendumsByEncounter.set(encounterGuid, []);
         }
         addendumsByEncounter.get(encounterGuid)!.push({
-            text: cleanPfHtml(row.Addendum),
+            text: wrapHtml(`<p>${cleanPfHtml(row.Addendum)}</p>`),
             status: emptyToNull(row.AmendmentStatus) || "Unknown",
             source: emptyToNull(row.AmendmentSource) || "Unknown",
             providerId: providerMap.get(row.LastModifiedByProviderGuid || "") || null,

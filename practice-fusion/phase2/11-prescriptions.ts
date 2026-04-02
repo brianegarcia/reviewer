@@ -1,7 +1,7 @@
 import Prescription from "@models/prescription.model";
 import { PrescriptionStatusEnum } from "@utils/enum";
 import { ORGANIZATION_ID, TSV_FILES, BATCH_SIZE } from "../config";
-import { parseTsvBatched } from "../lib/tsv-parser";
+import { parseTsvBatched, parseTsvFile } from "../lib/tsv-parser";
 import { IdMap } from "../lib/id-map";
 import { logger } from "../lib/logger";
 import { emptyToNull, parseDate } from "../lib/validators";
@@ -14,6 +14,16 @@ export async function importPrescriptions(patientMap: IdMap, providerMap: IdMap)
 
     const stats = { imported: 0, updated: 0, skipped: 0, errored: 0, total: 0 };
     const sequelize = getSequelize();
+
+    // Build PharmacyGuid → PharmacyName lookup
+    const pharmacyRows = await parseTsvFile(TSV_FILES.pharmacies);
+    const pharmacyNameMap = new Map<string, string>();
+    for (const row of pharmacyRows) {
+        if (row.PharmacyGuid && row.PharmacyName) {
+            pharmacyNameMap.set(row.PharmacyGuid, row.PharmacyName);
+        }
+    }
+    logger.info(CTX, `Loaded ${pharmacyNameMap.size} pharmacy names`);
 
     // Pre-load existing third_party_ids to skip duplicates
     const [existingRows] = await sequelize.query(
@@ -63,10 +73,10 @@ export async function importPrescriptions(patientMap: IdMap, providerMap: IdMap)
                 controlled_substances: emptyToNull(row.ControlledSubstanceSchedule),
                 comments: emptyToNull(row.NoteToPharmacy),
                 pharmacy_id: emptyToNull(row.PharmacyGuid),
+                pharmacy_name: pharmacyNameMap.get(row.PharmacyGuid) || null,
                 status: PrescriptionStatusEnum.COMPLETED,
                 is_default: false,
                 is_favorite: false,
-                meta_data: row.Ndc ? { ndc: row.Ndc, genericName: emptyToNull(row.GenericName) } : null,
                 created_at: dateOfService || undefined,
             });
         }

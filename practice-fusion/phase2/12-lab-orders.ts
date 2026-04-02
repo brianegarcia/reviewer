@@ -8,9 +8,8 @@ import { getSequelize } from "../lib/db";
 const CTX = "phase2/lab-orders";
 
 interface LabTest {
-    code: string;
-    loinc: string;
-    name: string;
+    description: string;
+    order_code: string;
 }
 
 interface LabObservation {
@@ -24,7 +23,13 @@ interface LabObservation {
     flagCode: string | null;
 }
 
-export async function importLabOrders(patientMap: IdMap, profileMap: IdMap): Promise<void> {
+const PF_STATUS_MAP: Record<string, string> = {
+    Draft: "draft",
+    Completed: "completed",
+    Received: "pending result",
+};
+
+export async function importLabOrders(patientMap: IdMap, profileMap: IdMap, encounterMap: IdMap, facilityMap: IdMap): Promise<void> {
     logger.info(CTX, "Starting lab orders import...");
 
     // 1. Read lab order items and group by OrderGuid
@@ -37,9 +42,8 @@ export async function importLabOrders(patientMap: IdMap, profileMap: IdMap): Pro
             itemsByOrder.set(orderGuid, []);
         }
         itemsByOrder.get(orderGuid)!.push({
-            code: emptyToNull(item.Code) || "",
-            loinc: emptyToNull(item.LoincCode) || "",
-            name: emptyToNull(item.Name) || "",
+            description: emptyToNull(item.Name) || "",
+            order_code: emptyToNull(item.Code) || emptyToNull(item.LoincCode) || "",
         });
     }
     logger.info(CTX, `Loaded ${orderItems.length} lab order items for ${itemsByOrder.size} orders`);
@@ -119,6 +123,10 @@ export async function importLabOrders(patientMap: IdMap, profileMap: IdMap): Pro
         }
 
         const providerId = profileMap.get(row.OrderingProviderProfileGuid || "") || null;
+        const visitId = encounterMap.get(row.EncounterGuid || "") || null;
+        const facility = facilityMap.get(row.FacilityGuid || "")?.toString() || null;
+        const status = PF_STATUS_MAP[row.OrderStatus || ""] || "draft";
+        const requestDate = emptyToNull(row.FutureOrderDateTimeUtc) || emptyToNull(row.LastModifiedDateTimeUtc) || null;
         const tests = itemsByOrder.get(orderGuid) || [];
 
         // Check if there are results for this order
@@ -135,8 +143,8 @@ export async function importLabOrders(patientMap: IdMap, profileMap: IdMap): Pro
 
         try {
             const [results] = await sequelize.query(
-                `INSERT INTO lab_orders (patient_id, organization_id, ordering_provider_id, placer_order_number, order_type, bill_type, order_status, comment, tests, order_diagnosis, priority, report_status, result, is_unsolicited, patient_notified, plan_executes, ai_automated, created_at, updated_at)
-                 VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, NOW(), NOW())
+                `INSERT INTO lab_orders (patient_id, organization_id, ordering_provider_id, placer_order_number, visit_id, facility, status, order_type, bill_type, order_status, comment, tests, order_diagnosis, priority, report_status, result, is_unsolicited, patient_notified, plan_executes, ai_automated, request_date, created_at, updated_at)
+                 VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18, $19, $20, $21, NOW(), NOW())
                  RETURNING id`,
                 {
                     bind: [
@@ -144,6 +152,9 @@ export async function importLabOrders(patientMap: IdMap, profileMap: IdMap): Pro
                         ORGANIZATION_ID,
                         providerId,
                         orderNumber,
+                        visitId,
+                        facility,
+                        status,
                         emptyToNull(row.LabType) || "Diagnostic",
                         emptyToNull(row.PaymentPreferenceType) || "Patient",
                         emptyToNull(row.OrderStatus),
@@ -156,7 +167,8 @@ export async function importLabOrders(patientMap: IdMap, profileMap: IdMap): Pro
                         false,
                         false,
                         false,
-                        false,
+                        true,
+                        requestDate,
                     ],
                 }
             );

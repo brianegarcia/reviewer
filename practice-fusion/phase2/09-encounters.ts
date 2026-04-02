@@ -1,23 +1,52 @@
 import PatientVisit from "@models/patient_visit.model";
-import FullNote from "@models/full_note.model";
+import VisitType from "@models/visit_type.model";
 import { TranscriptStatusEnum } from "@utils/enum";
 import { VisitStatusEnum } from "@models/types/patient_visit.model.type";
 import { ORGANIZATION_ID, TSV_FILES, BATCH_SIZE, DEFAULT_VISIT_TIME } from "../config";
 import { parseTsvBatched } from "../lib/tsv-parser";
 import { IdMap } from "../lib/id-map";
 import { logger } from "../lib/logger";
-import { cleanPfHtml, parseDateString, parseDate, emptyToNull } from "../lib/validators";
+import { parseDateString, parseDate, emptyToNull } from "../lib/validators";
 import { getSequelize } from "../lib/db";
+
+// Mapping of Practice Fusion chart note types to SubQDocs visit type names
+const CHART_NOTE_TYPE_MAPPING: Record<string, string> = {
+    "General Visit": "General",
+    "New Patient / Skin Check": "Evaluation of Skin Lesion",
+    "Mole / Spot Exam": "Evaluation of Skin Lesion",
+    "Follow Up Chief Complaint": "Follow-up Visit",
+    "FOLLOW UP CHIEF COMPLAINT": "Follow-up Visit",
+    "Rash / Allergy": "Rash",
+    "Vitiligo Evaluation": "Discoloration (Vitiligo)",
+    "Pigmentation / Melasma": "Discoloration (Hyperigmentation / Melasma)",
+    "Skin Cancer Screening": "Skin Cancer Screening (Full Body Skin Exam)",
+};
 
 const CTX = "phase2/encounters";
 
-function buildNoteHtml(subjective: string, objective: string, assessment: string, plan: string): string {
-    const parts: string[] = [];
-    if (subjective) parts.push(`<h3>Subjective</h3>${subjective}`);
-    if (objective) parts.push(`<h3>Objective</h3>${objective}`);
-    if (assessment) parts.push(`<h3>Assessment</h3>${assessment}`);
-    if (plan) parts.push(`<h3>Plan</h3>${plan}`);
-    return parts.join("\n") || "";
+async function buildVisitTypeLookup(): Promise<{ nameToId: Map<string, number>; defaultId: number | null }> {
+    const visitTypes = await VisitType.findAll({
+        where: { organization_id: ORGANIZATION_ID, is_deleted: false },
+        attributes: ["id", "name", "is_default"],
+    });
+
+    const nameToId = new Map<string, number>();
+    let defaultId: number | null = null;
+
+    for (const vt of visitTypes) {
+        nameToId.set(vt.name, vt.id);
+        if (vt.is_default) defaultId = vt.id;
+    }
+
+    // Add reverse mappings so raw ChartNoteType values resolve too
+    for (const [oldName, newName] of Object.entries(CHART_NOTE_TYPE_MAPPING)) {
+        const id = nameToId.get(newName);
+        if (id && !nameToId.has(oldName)) {
+            nameToId.set(oldName, id);
+        }
+    }
+
+    return { nameToId, defaultId };
 }
 
 export async function importEncounters(
@@ -30,6 +59,9 @@ export async function importEncounters(
 
     const stats = { imported: 0, updated: 0, skipped: 0, errored: 0, total: 0 };
     const sequelize = getSequelize();
+
+    const { nameToId: visitTypeLookup, defaultId: defaultVisitTypeId } = await buildVisitTypeLookup();
+    logger.info(CTX, `Loaded ${visitTypeLookup.size} visit type mappings (default id: ${defaultVisitTypeId})`);
 
     const totalRows = await parseTsvBatched(TSV_FILES.patientEncounters, BATCH_SIZE, async (batch, batchIndex) => {
         for (const row of batch) {
@@ -59,7 +91,7 @@ export async function importEncounters(
             }
 
             const doctorId = providerMap.get(row.SignedByProviderGuid || "") ||
-                             providerMap.get(row.SeenByProviderGuid || "") || null;
+                providerMap.get(row.SeenByProviderGuid || "") || null;
             const facilityId = facilityMap.get(row.FacilityGuid || "") || null;
             const finalizedAt = parseDate(row.SignedDateTimeUtc);
 
@@ -70,42 +102,20 @@ export async function importEncounters(
                     third_party_id: encounterGuid,
                     patient_id: patientId,
                     visit_date: visitDate,
-                    visit_time: new Date(`${visitDate}T00:00:00`),
+                    visit_time: new Date(`${visitDate}T${DEFAULT_VISIT_TIME}`),
                     status: TranscriptStatusEnum.SUCCESS,
                     visit_status: VisitStatusEnum.FINALIZED,
                     doctor_id: doctorId,
                     organization_id: ORGANIZATION_ID,
                     office_location_id: facilityId,
                     visit_notes: emptyToNull(row.ChiefComplaint),
-                    visit_type: emptyToNull(row.ChartNoteType),
+                    visit_type_id: visitTypeLookup.get(row.ChartNoteType) ?? defaultVisitTypeId,
                     data_source: "local",
                     keep_transcript: false,
                     finalized_at: finalizedAt,
                     finalized_by: doctorId,
                 } as any, { transaction });
 
-                // 2. Create full_note (notes table doesn't exist in DB)
-                const subjective = cleanPfHtml(row.Subjective);
-                const objective = cleanPfHtml(row.Objective);
-                const assessment = cleanPfHtml(row.Assessment);
-                const plan = cleanPfHtml(row.Plan);
-                await FullNote.create({
-                    patient_id: patientId,
-                    visit_id: visit.id,
-                    visit_date: visitDate,
-                    status: TranscriptStatusEnum.SUCCESS,
-                    version: 1,
-                    is_current: true,
-                    full_note_details: {
-                        subjective: subjective || "",
-                        objective: objective || "",
-                        assessment: assessment || "",
-                        plan: plan || "",
-                        chiefComplaint: emptyToNull(row.ChiefComplaint) || "",
-                        snapshotDiagnosis: emptyToNull(row.SnapshotDiagnosis) || "",
-                        snapshotMedications: emptyToNull(row.SnapshotMedications) || "",
-                    },
-                } as any, { transaction });
 
                 await transaction.commit();
                 encounterMap.set(encounterGuid, visit.id);

@@ -88,7 +88,6 @@ export async function importPharmacies(patientMap: IdMap): Promise<void> {
                 zip: truncate(zip, 20),
                 phone: truncate(emptyToNull(pharmacy.OfficePhone), 20),
                 fax: truncate(emptyToNull(pharmacy.OfficeFax), 20),
-                npi: pharmacy.NCPDP ? parseInt(pharmacy.NCPDP, 10) || null : null,
                 isPrimary,
             });
         }
