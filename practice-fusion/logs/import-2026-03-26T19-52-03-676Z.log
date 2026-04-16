@@ -1,0 +1,94 @@
+[2026-03-26T19:52:04.914Z] [INFO] [main] ╔══════════════════════════════════════════╗
+[2026-03-26T19:52:04.915Z] [INFO] [main] ║  Practice Fusion -> SubQDocs Import      ║
+[2026-03-26T19:52:04.915Z] [INFO] [main] ╚══════════════════════════════════════════╝
+[2026-03-26T19:52:05.752Z] [INFO] [main] Database connection successful
+[2026-03-26T19:52:05.752Z] [INFO] [main] Loading existing ID maps from Phase 1 & 2...
+[2026-03-26T19:52:05.765Z] [INFO] [main] Loaded maps: 4439 patients, 2 providers, 10759 encounters, 562 lab orders
+[2026-03-26T19:52:05.765Z] [INFO] [main] ═══ PHASE 3: Config & Clinical Enrichment ═══
+[2026-03-26T19:52:05.765Z] [INFO] [phase3/user-office-locations] Starting user-office-locations import...
+[2026-03-26T19:52:05.799Z] [ERROR] [phase3/user-office-locations] user=9 office=7: insert or update on table "user_office_locations" violates foreign key constraint "user_office_locations_organization_id_fkey"
+[2026-03-26T19:52:05.803Z] [ERROR] [phase3/user-office-locations] user=9 office=8: insert or update on table "user_office_locations" violates foreign key constraint "user_office_locations_organization_id_fkey"
+[2026-03-26T19:52:05.807Z] [ERROR] [phase3/user-office-locations] user=10 office=7: insert or update on table "user_office_locations" violates foreign key constraint "user_office_locations_organization_id_fkey"
+[2026-03-26T19:52:05.810Z] [ERROR] [phase3/user-office-locations] user=10 office=8: insert or update on table "user_office_locations" violates foreign key constraint "user_office_locations_organization_id_fkey"
+[2026-03-26T19:52:05.810Z] [INFO] [phase3/user-office-locations] Complete: 4 total, 0 imported, 0 updated, 0 skipped, 4 errored
+[2026-03-26T19:52:05.810Z] [INFO] [phase3/visit-types] Starting visit types import...
+[2026-03-26T19:52:05.819Z] [ERROR] [phase3/visit-types] Visit type "Follow-up Visit": insert or update on table "visit_types" violates foreign key constraint "visit_types_organization_id_fkey"
+[2026-03-26T19:52:05.822Z] [ERROR] [phase3/visit-types] Visit type "General": insert or update on table "visit_types" violates foreign key constraint "visit_types_organization_id_fkey"
+[2026-03-26T19:52:05.826Z] [ERROR] [phase3/visit-types] Visit type "Evaluation of Skin Lesion": insert or update on table "visit_types" violates foreign key constraint "visit_types_organization_id_fkey"
+[2026-03-26T19:52:05.829Z] [ERROR] [phase3/visit-types] Visit type "Acne Evaluation": insert or update on table "visit_types" violates foreign key constraint "visit_types_organization_id_fkey"
+[2026-03-26T19:52:05.831Z] [ERROR] [phase3/visit-types] Visit type "Rash": insert or update on table "visit_types" violates foreign key constraint "visit_types_organization_id_fkey"
+[2026-03-26T19:52:05.834Z] [ERROR] [phase3/visit-types] Visit type "Hair Loss (Alopecia)": insert or update on table "visit_types" violates foreign key constraint "visit_types_organization_id_fkey"
+[2026-03-26T19:52:05.837Z] [ERROR] [phase3/visit-types] Visit type "Warts (Verruca)": insert or update on table "visit_types" violates foreign key constraint "visit_types_organization_id_fkey"
+[2026-03-26T19:52:05.840Z] [ERROR] [phase3/visit-types] Visit type "Molluscum": insert or update on table "visit_types" violates foreign key constraint "visit_types_organization_id_fkey"
+[2026-03-26T19:52:05.846Z] [ERROR] [phase3/visit-types] Visit type "Skin Infection": insert or update on table "visit_types" violates foreign key constraint "visit_types_organization_id_fkey"
+[2026-03-26T19:52:05.848Z] [ERROR] [phase3/visit-types] Visit type "Cosmetic Treatment": insert or update on table "visit_types" violates foreign key constraint "visit_types_organization_id_fkey"
+[2026-03-26T19:52:05.851Z] [ERROR] [phase3/visit-types] Visit type "Skin Cancer Screening (Full Body Skin Exam)": insert or update on table "visit_types" violates foreign key constraint "visit_types_organization_id_fkey"
+[2026-03-26T19:52:05.854Z] [ERROR] [phase3/visit-types] Visit type "Discoloration (Vitiligo)": insert or update on table "visit_types" violates foreign key constraint "visit_types_organization_id_fkey"
+[2026-03-26T19:52:05.856Z] [ERROR] [phase3/visit-types] Visit type "Discoloration (Hyperigmentation / Melasma)": insert or update on table "visit_types" violates foreign key constraint "visit_types_organization_id_fkey"
+[2026-03-26T19:52:05.860Z] [ERROR] [phase3/visit-types] Visit type "Nail Disorder": insert or update on table "visit_types" violates foreign key constraint "visit_types_organization_id_fkey"
+[2026-03-26T19:52:05.860Z] [INFO] [phase3/visit-types] Complete: 14 total, 0 imported, 0 updated, 0 skipped, 14 errored
+[2026-03-26T19:52:05.860Z] [INFO] [phase3/global-questions] Starting global questions import...
+[2026-03-26T19:52:05.868Z] [ERROR] [phase3/global-questions] Question "What brings you in today?": insert or update on table "global_questions" violates foreign key constraint "global_questions_organization_id_fkey"
+[2026-03-26T19:52:05.871Z] [ERROR] [phase3/global-questions] Question "Do you have any other medical conditions (diabetes, psoriasis, etc.)?": insert or update on table "global_questions" violates foreign key constraint "global_questions_organization_id_fkey"
+[2026-03-26T19:52:05.873Z] [ERROR] [phase3/global-questions] Question "Are you currently taking any medications?": insert or update on table "global_questions" violates foreign key constraint "global_questions_organization_id_fkey"
+[2026-03-26T19:52:05.875Z] [ERROR] [phase3/global-questions] Question "Do you have any known allergies?": insert or update on table "global_questions" violates foreign key constraint "global_questions_organization_id_fkey"
+[2026-03-26T19:52:05.877Z] [ERROR] [phase3/global-questions] Question "Are you currently pregnant or breastfeeding?": insert or update on table "global_questions" violates foreign key constraint "global_questions_organization_id_fkey"
+[2026-03-26T19:52:05.879Z] [ERROR] [phase3/global-questions] Question "Do you have a history of skin cancer? If yes, what kind?": insert or update on table "global_questions" violates foreign key constraint "global_questions_organization_id_fkey"
+[2026-03-26T19:52:05.882Z] [ERROR] [phase3/global-questions] Question "Do you have a history of immunosuppression?": insert or update on table "global_questions" violates foreign key constraint "global_questions_organization_id_fkey"
+[2026-03-26T19:52:05.884Z] [ERROR] [phase3/global-questions] Question "Do you have a pacemaker?": insert or update on table "global_questions" violates foreign key constraint "global_questions_organization_id_fkey"
+[2026-03-26T19:52:05.886Z] [ERROR] [phase3/global-questions] Question "Do you have any joint replacements?": insert or update on table "global_questions" violates foreign key constraint "global_questions_organization_id_fkey"
+[2026-03-26T19:52:05.886Z] [INFO] [phase3/global-questions] Complete: 9 total, 0 imported, 0 updated, 0 skipped, 9 errored
+[2026-03-26T19:52:05.886Z] [INFO] [phase3/organization-update] Updating organization fields...
+[2026-03-26T19:52:05.889Z] [ERROR] [phase3/organization-update] Organization id=0 not found
+[2026-03-26T19:52:05.889Z] [INFO] [phase3/encounter-events] Starting encounter events import...
+[2026-03-26T19:52:06.206Z] [INFO] [phase3/encounter-events] Parsed events: 0 encounters with vitals, 10759 with other events
+[2026-03-26T19:52:12.649Z] [INFO] [phase3/encounter-events] Complete: 53796 total, 10759 imported, 0 updated, 0 skipped, 0 errored
+[2026-03-26T19:52:12.649Z] [INFO] [phase3/encounter-diagnoses] Starting encounter-diagnoses link import...
+[2026-03-26T19:52:12.726Z] [INFO] [phase3/encounter-diagnoses] Found 41697 encounter-diagnosis links
+[2026-03-26T19:52:12.744Z] [INFO] [phase3/encounter-diagnoses] Grouped diagnoses for 10074 encounters (0 skipped)
+[2026-03-26T19:52:18.426Z] [INFO] [phase3/encounter-diagnoses] Complete: 41697 total, 10074 imported, 0 updated, 0 skipped, 0 errored
+[2026-03-26T19:52:18.427Z] [INFO] [phase3/encounter-addendums] Starting encounter addendums import...
+[2026-03-26T19:52:18.428Z] [INFO] [phase3/encounter-addendums] Found 144 addendum records
+[2026-03-26T19:52:18.428Z] [INFO] [phase3/encounter-addendums] Grouped addendums for 139 encounters
+[2026-03-26T19:52:18.506Z] [INFO] [phase3/encounter-addendums] Complete: 144 total, 139 imported, 0 updated, 0 skipped, 0 errored
+[2026-03-26T19:52:18.506Z] [INFO] [phase3/encounter-observations] Starting encounter observations import...
+[2026-03-26T19:52:18.507Z] [INFO] [phase3/encounter-observations] Found 120 observation records
+[2026-03-26T19:52:18.507Z] [INFO] [phase3/encounter-observations] Grouped observations for 40 encounters
+[2026-03-26T19:52:18.530Z] [INFO] [phase3/encounter-observations] Complete: 120 total, 40 imported, 0 updated, 0 skipped, 0 errored
+[2026-03-26T19:52:18.530Z] [INFO] [phase3/encounter-medications] Starting encounter-medications link import...
+[2026-03-26T19:52:18.539Z] [INFO] [phase3/encounter-medications] Found 5746 encounter-medication links
+[2026-03-26T19:52:18.543Z] [INFO] [phase3/encounter-medications] Grouped medications for 3440 encounters
+[2026-03-26T19:52:20.476Z] [INFO] [phase3/encounter-medications] Complete: 5746 total, 3440 imported, 0 updated, 20 skipped, 0 errored
+[2026-03-26T19:52:20.476Z] [INFO] [phase3/health-concerns] Starting health concerns import...
+[2026-03-26T19:52:20.476Z] [INFO] [phase3/health-concerns] Found 24 health concern records
+[2026-03-26T19:52:20.477Z] [INFO] [phase3/health-concerns] Grouped concerns for 24 patients
+[2026-03-26T19:52:20.554Z] [INFO] [phase3/health-concerns] Complete: 24 total, 24 imported, 0 updated, 0 skipped, 0 errored
+[2026-03-26T19:52:20.555Z] [INFO] [phase3/med-history] Starting medical history import...
+[2026-03-26T19:52:20.555Z] [INFO] [phase3/med-history] Found 11 med history records
+[2026-03-26T19:52:20.555Z] [INFO] [phase3/med-history] Grouped history for 7 patients
+[2026-03-26T19:52:20.578Z] [INFO] [phase3/med-history] Complete: 11 total, 7 imported, 0 updated, 0 skipped, 0 errored
+[2026-03-26T19:52:20.578Z] [INFO] [phase3/patient-conditions] Starting patient conditions import...
+[2026-03-26T19:52:20.579Z] [INFO] [phase3/patient-conditions] Found 4 condition records
+[2026-03-26T19:52:20.583Z] [INFO] [phase3/patient-conditions] Added condition "No Known Drug Allergies" for patient 171
+[2026-03-26T19:52:20.585Z] [INFO] [phase3/patient-conditions] Added condition "No Known Drug Allergies" for patient 174
+[2026-03-26T19:52:20.587Z] [INFO] [phase3/patient-conditions] Added condition "No Known Drug Allergies" for patient 183
+[2026-03-26T19:52:20.589Z] [INFO] [phase3/patient-conditions] Added condition "No Known Drug Allergies" for patient 458
+[2026-03-26T19:52:20.589Z] [INFO] [phase3/patient-conditions] Complete: 4 total, 4 imported, 0 updated, 0 skipped, 0 errored
+[2026-03-26T19:52:20.589Z] [INFO] [phase3/pinned-notes] Starting pinned notes import...
+[2026-03-26T19:52:20.590Z] [INFO] [phase3/pinned-notes] Found 6 pinned note records
+[2026-03-26T19:52:20.590Z] [INFO] [phase3/pinned-notes] Grouped pinned notes for 6 patients
+[2026-03-26T19:52:20.607Z] [INFO] [phase3/pinned-notes] Complete: 6 total, 6 imported, 0 updated, 0 skipped, 0 errored
+[2026-03-26T19:52:20.608Z] [INFO] [phase3/lab-result-notes] Starting lab result notes import...
+[2026-03-26T19:52:20.611Z] [INFO] [phase3/lab-result-notes] Loaded 1 result->order mappings
+[2026-03-26T19:52:20.612Z] [INFO] [phase3/lab-result-notes] Found 557 lab result notes
+[2026-03-26T19:52:20.635Z] [INFO] [phase3/lab-result-notes] Scanned 18284 observation notes (linked via result notes)
+[2026-03-26T19:52:20.635Z] [INFO] [phase3/lab-result-notes] Complete: 557 total, 0 imported, 0 updated, 557 skipped, 0 errored
+[2026-03-26T19:52:20.635Z] [INFO] [phase3/lab-order-diagnoses] Starting lab order item diagnoses import...
+[2026-03-26T19:52:20.640Z] [INFO] [phase3/lab-order-diagnoses] Loaded 1857 item->order mappings
+[2026-03-26T19:52:20.644Z] [INFO] [phase3/lab-order-diagnoses] Found 1949 lab order item diagnosis records
+[2026-03-26T19:52:20.647Z] [INFO] [phase3/lab-order-diagnoses] Grouped diagnoses for 0 lab orders
+[2026-03-26T19:52:20.647Z] [INFO] [phase3/lab-order-diagnoses] Complete: 1949 total, 0 imported, 0 updated, 1949 skipped, 0 errored
+[2026-03-26T19:52:20.647Z] [INFO] [main] ═══ PHASE 3 COMPLETE ═══
+[2026-03-26T19:52:20.647Z] [INFO] [main] ╔══════════════════════════════════════════╗
+[2026-03-26T19:52:20.647Z] [INFO] [main] ║  IMPORT COMPLETE                         ║
+[2026-03-26T19:52:20.648Z] [INFO] [main] ╚══════════════════════════════════════════╝

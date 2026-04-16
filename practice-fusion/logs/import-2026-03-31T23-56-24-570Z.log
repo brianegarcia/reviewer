@@ -1,0 +1,48 @@
+[2026-03-31T23:56:25.947Z] [INFO] [main] ╔══════════════════════════════════════════╗
+[2026-03-31T23:56:25.949Z] [INFO] [main] ║  Practice Fusion -> SubQDocs Import      ║
+[2026-03-31T23:56:25.949Z] [INFO] [main] ╚══════════════════════════════════════════╝
+[2026-03-31T23:56:26.750Z] [INFO] [main] Database connection successful
+[2026-03-31T23:56:26.751Z] [INFO] [phase1/organization] Checking for existing organization...
+[2026-03-31T23:56:26.760Z] [INFO] [phase1/organization] Organization already exists: id=7, name="Omeed Ahadiat Dermatology"
+[2026-03-31T23:56:26.760Z] [INFO] [main] Loading existing ID maps from Phase 1, 2 & 3...
+[2026-03-31T23:56:26.773Z] [INFO] [main] Loaded maps: 4439 patients, 2 providers, 10759 encounters, 562 lab orders, 2 facilities
+[2026-03-31T23:56:26.773Z] [INFO] [main] ═══ PHASE 4: Documents & Billing ═══
+[2026-03-31T23:56:26.774Z] [INFO] [phase4/labs] Starting labs import...
+[2026-03-31T23:56:26.779Z] [INFO] [phase4/labs] Found 3 lab records
+[2026-03-31T23:56:26.785Z] [INFO] [phase4/labs] Complete: 3 total, 3 imported, 0 updated, 0 skipped, 0 errored
+[2026-03-31T23:56:26.785Z] [INFO] [phase4/labs] Backfilling lab_id on existing lab_orders...
+[2026-03-31T23:56:27.021Z] [INFO] [phase4/labs] Backfilled lab_id on 539 lab orders
+[2026-03-31T23:56:27.022Z] [INFO] [phase4/lab-specimens] Starting lab specimen import...
+[2026-03-31T23:56:27.022Z] [INFO] [phase4/lab-specimens] Found 7 specimen records
+[2026-03-31T23:56:27.035Z] [INFO] [phase4/lab-specimens] Complete: 7 total, 7 imported, 0 updated, 0 skipped, 0 errored
+[2026-03-31T23:56:27.035Z] [INFO] [phase4/lab-result-documents] Starting lab result document import...
+[2026-03-31T23:56:27.037Z] [INFO] [phase4/lab-result-documents] Found 781 lab result document records
+[2026-03-31T23:56:27.038Z] [INFO] [phase4/lab-result-documents] Found 11 existing lab order files
+[2026-03-31T23:56:27.038Z] [INFO] [phase4/lab-result-documents] 0 documents to upload, 781 skipped, 0 already exist
+[2026-03-31T23:56:27.038Z] [INFO] [phase4/lab-result-documents] Complete: 781 total, 0 imported, 0 updated, 781 skipped, 0 errored
+[2026-03-31T23:56:27.038Z] [INFO] [phase4/lab-order-documents] Starting lab order document import...
+[2026-03-31T23:56:27.039Z] [INFO] [phase4/lab-order-documents] Found 11 lab order document records
+[2026-03-31T23:56:27.040Z] [INFO] [phase4/lab-order-documents] Found 11 existing lab order files
+[2026-03-31T23:56:27.040Z] [INFO] [phase4/lab-order-documents] 0 documents to upload, 0 skipped, 11 already exist
+[2026-03-31T23:56:27.040Z] [INFO] [phase4/lab-order-documents] Complete: 11 total, 0 imported, 11 updated, 0 skipped, 0 errored
+[2026-03-31T23:56:27.040Z] [INFO] [phase4/patient-documents] Starting patient document import...
+[2026-03-31T23:56:27.041Z] [INFO] [phase4/patient-documents] Found 121 patient document records
+[2026-03-31T23:56:27.042Z] [INFO] [phase4/patient-documents] Found 121 existing attachments
+[2026-03-31T23:56:27.042Z] [INFO] [phase4/patient-documents] 0 documents to upload, 0 skipped
+[2026-03-31T23:56:27.042Z] [INFO] [phase4/patient-documents] Complete: 121 total, 0 imported, 121 updated, 0 skipped, 0 errored
+[2026-03-31T23:56:27.043Z] [INFO] [phase4/superbills] Starting superbills import...
+[2026-03-31T23:56:27.044Z] [INFO] [phase4/superbills] Pre-loaded diagnoses for 26 bills
+[2026-03-31T23:56:27.047Z] [INFO] [phase4/superbills] Found 42 superbill records
+[2026-03-31T23:56:27.049Z] [INFO] [phase4/superbills] Found 42 existing bills
+[2026-03-31T23:56:27.068Z] [INFO] [phase4/superbills] Complete: 42 total, 0 imported, 42 updated, 0 skipped, 0 errored
+[2026-03-31T23:56:27.068Z] [INFO] [phase4/superbill-procedures] Starting superbill procedures import...
+[2026-03-31T23:56:27.069Z] [INFO] [phase4/superbill-procedures] Pre-loaded diagnosis pointers for 27 procedures
+[2026-03-31T23:56:27.069Z] [INFO] [phase4/superbill-procedures] Found 27 superbill procedure records
+[2026-03-31T23:56:27.072Z] [INFO] [phase4/superbill-procedures] Found 27 existing bill services
+[2026-03-31T23:56:27.072Z] [INFO] [phase4/superbill-procedures] Complete: 27 total, 0 imported, 0 updated, 27 skipped, 0 errored
+[2026-03-31T23:56:27.072Z] [INFO] [phase4/update-bill-totals] Updating bill totals from services...
+[2026-03-31T23:56:27.072Z] [INFO] [phase4/update-bill-totals] No bills to update
+[2026-03-31T23:56:27.072Z] [INFO] [main] ═══ PHASE 4 COMPLETE ═══
+[2026-03-31T23:56:27.072Z] [INFO] [main] ╔══════════════════════════════════════════╗
+[2026-03-31T23:56:27.072Z] [INFO] [main] ║  IMPORT COMPLETE                         ║
+[2026-03-31T23:56:27.072Z] [INFO] [main] ╚══════════════════════════════════════════╝

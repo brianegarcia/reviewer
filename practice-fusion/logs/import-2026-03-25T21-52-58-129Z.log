@@ -1,0 +1,9 @@
+[2026-03-25T21:52:58.252Z] [INFO] [main] Running remaining step: lab orders
+[2026-03-25T21:52:59.909Z] [INFO] [main] DB connected
+[2026-03-25T21:52:59.913Z] [INFO] [main] Maps: 4439 patients
+[2026-03-25T21:52:59.914Z] [INFO] [phase2/lab-orders] Starting lab orders import...
+[2026-03-25T21:52:59.925Z] [INFO] [phase2/lab-orders] Loaded 1857 lab order items for 539 orders
+[2026-03-25T21:53:00.075Z] [INFO] [phase2/lab-orders] Loaded 13540 observations for 761 results
+[2026-03-25T21:53:00.079Z] [INFO] [phase2/lab-orders] Found 562 lab orders
+[2026-03-25T21:53:01.261Z] [INFO] [phase2/lab-orders] Complete: 562 total, 562 imported, 0 updated, 0 skipped, 0 errored
+[2026-03-25T21:53:01.261Z] [INFO] [main] Done!

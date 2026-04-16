@@ -1,0 +1,185 @@
+[2026-03-26T20:01:04.877Z] [INFO] [main] ╔══════════════════════════════════════════╗
+[2026-03-26T20:01:04.879Z] [INFO] [main] ║  Practice Fusion -> SubQDocs Import      ║
+[2026-03-26T20:01:04.879Z] [INFO] [main] ╚══════════════════════════════════════════╝
+[2026-03-26T20:01:05.681Z] [INFO] [main] Database connection successful
+[2026-03-26T20:01:05.682Z] [INFO] [main] ═══ PHASE 1: Core Data ═══
+[2026-03-26T20:01:05.682Z] [INFO] [phase1/organization] Checking for existing organization...
+[2026-03-26T20:01:05.691Z] [INFO] [phase1/organization] Organization already exists: id=7, name="Omeed Ahadiat Dermatology"
+[2026-03-26T20:01:05.691Z] [INFO] [phase1/facilities] Starting facilities import...
+[2026-03-26T20:01:05.694Z] [INFO] [phase1/facilities] Found 2 facilities in TSV
+[2026-03-26T20:01:05.697Z] [INFO] [phase1/facilities] Facility "Omeed Ahadiat - Foothill Ranch" already exists (id=7)
+[2026-03-26T20:01:05.698Z] [INFO] [phase1/facilities] Facility "Omeed Ahadiat - Leisure World" already exists (id=8)
+[2026-03-26T20:01:05.698Z] [INFO] [phase1/facilities] Complete: 2 total, 0 imported, 2 updated, 0 skipped, 0 errored
+[2026-03-26T20:01:05.699Z] [INFO] [phase1/providers] Starting providers import...
+[2026-03-26T20:01:05.700Z] [INFO] [phase1/providers] Found 2 providers, 2 profiles, 2 users
+[2026-03-26T20:01:05.704Z] [INFO] [phase1/providers] Provider "Omeed Ahadiat" already exists (id=9)
+[2026-03-26T20:01:05.706Z] [INFO] [phase1/providers] Provider "Maria Ruiz" already exists (id=10)
+[2026-03-26T20:01:05.706Z] [INFO] [phase1/providers] Complete: 2 total, 0 imported, 2 updated, 0 skipped, 0 errored
+[2026-03-26T20:01:05.713Z] [INFO] [phase1/patients] Starting patients import...
+[2026-03-26T20:01:05.822Z] [INFO] [phase1/patients] Soft-deleting inactive patients...
+[2026-03-26T20:01:05.908Z] [INFO] [phase1/patients] Soft-deleted 6 inactive patients
+[2026-03-26T20:01:05.910Z] [INFO] [phase1/patients] Complete: 4439 total, 0 imported, 4439 updated, 0 skipped, 0 errored
+[2026-03-26T20:01:05.910Z] [INFO] [phase1/demographics] Starting patient race & ethnicity import...
+[2026-03-26T20:01:05.928Z] [INFO] [phase1/demographics] Found 4439 race records
+[2026-03-26T20:01:15.085Z] [INFO] [phase1/demographics] Race: 4439 updated, 0 skipped
+[2026-03-26T20:01:15.092Z] [INFO] [phase1/demographics] Found 4439 ethnicity records
+[2026-03-26T20:01:22.843Z] [INFO] [phase1/demographics] Ethnicity: 4439 updated, 0 skipped
+[2026-03-26T20:01:22.844Z] [INFO] [phase1/pharmacies] Starting pharmacies import...
+[2026-03-26T20:01:22.845Z] [INFO] [phase1/pharmacies] Loaded 596 pharmacies into lookup
+[2026-03-26T20:01:22.849Z] [INFO] [phase1/pharmacies] Found 2471 patient-pharmacy links
+[2026-03-26T20:01:23.161Z] [INFO] [phase1/pharmacies] Complete: 2471 total, 2471 imported, 0 updated, 0 skipped, 0 errored
+[2026-03-26T20:01:23.161Z] [INFO] [main] ═══ PHASE 1 COMPLETE ═══
+[2026-03-26T20:01:23.161Z] [INFO] [main] ═══ PHASE 2: Medical History ═══
+[2026-03-26T20:01:23.161Z] [INFO] [phase2/medications] Starting medications import...
+[2026-03-26T20:01:23.296Z] [INFO] [phase2/medications] Batch 0: 500 medications imported
+[2026-03-26T20:01:23.356Z] [INFO] [phase2/medications] Batch 1: 500 medications imported
+[2026-03-26T20:01:23.409Z] [INFO] [phase2/medications] Batch 2: 500 medications imported
+[2026-03-26T20:01:23.465Z] [INFO] [phase2/medications] Batch 3: 500 medications imported
+[2026-03-26T20:01:23.517Z] [INFO] [phase2/medications] Batch 4: 500 medications imported
+[2026-03-26T20:01:23.570Z] [INFO] [phase2/medications] Batch 5: 500 medications imported
+[2026-03-26T20:01:23.621Z] [INFO] [phase2/medications] Batch 6: 500 medications imported
+[2026-03-26T20:01:23.685Z] [INFO] [phase2/medications] Batch 7: 500 medications imported
+[2026-03-26T20:01:23.742Z] [INFO] [phase2/medications] Batch 8: 500 medications imported
+[2026-03-26T20:01:23.796Z] [INFO] [phase2/medications] Batch 9: 500 medications imported
+[2026-03-26T20:01:23.851Z] [INFO] [phase2/medications] Batch 10: 500 medications imported
+[2026-03-26T20:01:23.896Z] [INFO] [phase2/medications] Batch 11: 421 medications imported
+[2026-03-26T20:01:23.896Z] [INFO] [phase2/medications] Complete: 5921 total, 5921 imported, 0 updated, 0 skipped, 0 errored
+[2026-03-26T20:01:23.902Z] [INFO] [phase2/encounters] Starting encounters import...
+[2026-03-26T20:01:23.915Z] [INFO] [phase2/encounters] Batch 0: processed (0 imported so far)
+[2026-03-26T20:01:23.929Z] [INFO] [phase2/encounters] Batch 1: processed (0 imported so far)
+[2026-03-26T20:01:23.947Z] [INFO] [phase2/encounters] Batch 2: processed (0 imported so far)
+[2026-03-26T20:01:23.960Z] [INFO] [phase2/encounters] Batch 3: processed (0 imported so far)
+[2026-03-26T20:01:23.972Z] [INFO] [phase2/encounters] Batch 4: processed (0 imported so far)
+[2026-03-26T20:01:24.001Z] [INFO] [phase2/encounters] Batch 5: processed (0 imported so far)
+[2026-03-26T20:01:24.014Z] [INFO] [phase2/encounters] Batch 6: processed (0 imported so far)
+[2026-03-26T20:01:24.032Z] [INFO] [phase2/encounters] Batch 7: processed (0 imported so far)
+[2026-03-26T20:01:24.045Z] [INFO] [phase2/encounters] Batch 8: processed (0 imported so far)
+[2026-03-26T20:01:24.058Z] [INFO] [phase2/encounters] Batch 9: processed (0 imported so far)
+[2026-03-26T20:01:24.073Z] [INFO] [phase2/encounters] Batch 10: processed (0 imported so far)
+[2026-03-26T20:01:24.087Z] [INFO] [phase2/encounters] Batch 11: processed (0 imported so far)
+[2026-03-26T20:01:24.106Z] [INFO] [phase2/encounters] Batch 12: processed (0 imported so far)
+[2026-03-26T20:01:24.118Z] [INFO] [phase2/encounters] Batch 13: processed (0 imported so far)
+[2026-03-26T20:01:24.132Z] [INFO] [phase2/encounters] Batch 14: processed (0 imported so far)
+[2026-03-26T20:01:24.151Z] [INFO] [phase2/encounters] Batch 15: processed (0 imported so far)
+[2026-03-26T20:01:24.180Z] [INFO] [phase2/encounters] Batch 16: processed (0 imported so far)
+[2026-03-26T20:01:24.214Z] [INFO] [phase2/encounters] Batch 17: processed (0 imported so far)
+[2026-03-26T20:01:24.227Z] [INFO] [phase2/encounters] Batch 18: processed (0 imported so far)
+[2026-03-26T20:01:24.236Z] [INFO] [phase2/encounters] Batch 19: processed (0 imported so far)
+[2026-03-26T20:01:24.254Z] [INFO] [phase2/encounters] Batch 20: processed (0 imported so far)
+[2026-03-26T20:01:24.263Z] [INFO] [phase2/encounters] Batch 21: processed (0 imported so far)
+[2026-03-26T20:01:24.269Z] [INFO] [phase2/encounters] Complete: 10759 total, 0 imported, 10759 updated, 0 skipped, 0 errored
+[2026-03-26T20:01:24.269Z] [INFO] [phase2/diagnoses] Starting diagnoses import...
+[2026-03-26T20:01:24.345Z] [INFO] [phase2/diagnoses] Found 22743 diagnosis records
+[2026-03-26T20:01:24.404Z] [INFO] [phase2/diagnoses] Parsed 22743 diagnoses for 4180 patients (0 skipped)
+[2026-03-26T20:01:28.007Z] [INFO] [phase2/diagnoses] Complete: 22743 total, 4180 imported, 0 updated, 0 skipped, 0 errored
+[2026-03-26T20:01:28.007Z] [INFO] [phase2/prescriptions] Starting prescriptions import...
+[2026-03-26T20:01:28.321Z] [INFO] [phase2/prescriptions] Batch 0: 500 prescriptions imported
+[2026-03-26T20:01:28.834Z] [INFO] [phase2/prescriptions] Batch 1: 500 prescriptions imported
+[2026-03-26T20:01:29.505Z] [INFO] [phase2/prescriptions] Batch 2: 500 prescriptions imported
+[2026-03-26T20:01:29.672Z] [INFO] [phase2/prescriptions] Batch 3: 500 prescriptions imported
+[2026-03-26T20:01:29.804Z] [INFO] [phase2/prescriptions] Batch 4: 500 prescriptions imported
+[2026-03-26T20:01:29.949Z] [INFO] [phase2/prescriptions] Batch 5: 500 prescriptions imported
+[2026-03-26T20:01:30.093Z] [INFO] [phase2/prescriptions] Batch 6: 500 prescriptions imported
+[2026-03-26T20:01:30.257Z] [INFO] [phase2/prescriptions] Batch 7: 500 prescriptions imported
+[2026-03-26T20:01:30.388Z] [INFO] [phase2/prescriptions] Batch 8: 500 prescriptions imported
+[2026-03-26T20:01:30.509Z] [INFO] [phase2/prescriptions] Batch 9: 500 prescriptions imported
+[2026-03-26T20:01:30.651Z] [INFO] [phase2/prescriptions] Batch 10: 500 prescriptions imported
+[2026-03-26T20:01:30.808Z] [INFO] [phase2/prescriptions] Batch 11: 500 prescriptions imported
+[2026-03-26T20:01:30.951Z] [INFO] [phase2/prescriptions] Batch 12: 500 prescriptions imported
+[2026-03-26T20:01:31.085Z] [INFO] [phase2/prescriptions] Batch 13: 500 prescriptions imported
+[2026-03-26T20:01:31.217Z] [INFO] [phase2/prescriptions] Batch 14: 500 prescriptions imported
+[2026-03-26T20:01:31.353Z] [INFO] [phase2/prescriptions] Batch 15: 500 prescriptions imported
+[2026-03-26T20:01:31.488Z] [INFO] [phase2/prescriptions] Batch 16: 500 prescriptions imported
+[2026-03-26T20:01:31.631Z] [INFO] [phase2/prescriptions] Batch 17: 500 prescriptions imported
+[2026-03-26T20:01:31.990Z] [INFO] [phase2/prescriptions] Batch 18: 500 prescriptions imported
+[2026-03-26T20:01:32.017Z] [INFO] [phase2/prescriptions] Batch 19: 21 prescriptions imported
+[2026-03-26T20:01:32.017Z] [INFO] [phase2/prescriptions] Complete: 9521 total, 9521 imported, 0 updated, 0 skipped, 0 errored
+[2026-03-26T20:01:32.018Z] [INFO] [phase2/lab-orders] Starting lab orders import...
+[2026-03-26T20:01:32.033Z] [INFO] [phase2/lab-orders] Loaded 1857 lab order items for 539 orders
+[2026-03-26T20:01:32.153Z] [INFO] [phase2/lab-orders] Loaded 13540 observations for 761 results
+[2026-03-26T20:01:32.161Z] [INFO] [phase2/lab-orders] Found 562 lab orders
+[2026-03-26T20:01:33.666Z] [INFO] [phase2/lab-orders] Complete: 562 total, 562 imported, 0 updated, 0 skipped, 0 errored
+[2026-03-26T20:01:33.666Z] [INFO] [main] ═══ PHASE 2 COMPLETE ═══
+[2026-03-26T20:01:33.667Z] [INFO] [main] ═══ PHASE 3: Config & Clinical Enrichment ═══
+[2026-03-26T20:01:33.667Z] [INFO] [phase3/user-office-locations] Starting user-office-locations import...
+[2026-03-26T20:01:33.672Z] [INFO] [phase3/user-office-locations] Link user=9 -> office=7 already exists
+[2026-03-26T20:01:33.675Z] [INFO] [phase3/user-office-locations] Link user=9 -> office=8 already exists
+[2026-03-26T20:01:33.675Z] [INFO] [phase3/user-office-locations] Link user=10 -> office=7 already exists
+[2026-03-26T20:01:33.678Z] [INFO] [phase3/user-office-locations] Link user=10 -> office=8 already exists
+[2026-03-26T20:01:33.681Z] [INFO] [phase3/user-office-locations] Complete: 4 total, 0 imported, 4 updated, 0 skipped, 0 errored
+[2026-03-26T20:01:33.681Z] [INFO] [phase3/visit-types] Starting visit types import...
+[2026-03-26T20:01:33.684Z] [INFO] [phase3/visit-types] Visit type "Follow-up Visit" already exists (id=85)
+[2026-03-26T20:01:33.686Z] [INFO] [phase3/visit-types] Visit type "General" already exists (id=86)
+[2026-03-26T20:01:33.687Z] [INFO] [phase3/visit-types] Visit type "Evaluation of Skin Lesion" already exists (id=87)
+[2026-03-26T20:01:33.688Z] [INFO] [phase3/visit-types] Visit type "Acne Evaluation" already exists (id=88)
+[2026-03-26T20:01:33.691Z] [INFO] [phase3/visit-types] Visit type "Rash" already exists (id=89)
+[2026-03-26T20:01:33.692Z] [INFO] [phase3/visit-types] Visit type "Hair Loss (Alopecia)" already exists (id=90)
+[2026-03-26T20:01:33.693Z] [INFO] [phase3/visit-types] Visit type "Warts (Verruca)" already exists (id=91)
+[2026-03-26T20:01:33.694Z] [INFO] [phase3/visit-types] Visit type "Molluscum" already exists (id=92)
+[2026-03-26T20:01:33.695Z] [INFO] [phase3/visit-types] Visit type "Skin Infection" already exists (id=93)
+[2026-03-26T20:01:33.696Z] [INFO] [phase3/visit-types] Visit type "Cosmetic Treatment" already exists (id=94)
+[2026-03-26T20:01:33.697Z] [INFO] [phase3/visit-types] Visit type "Skin Cancer Screening (Full Body Skin Exam)" already exists (id=95)
+[2026-03-26T20:01:33.698Z] [INFO] [phase3/visit-types] Visit type "Discoloration (Vitiligo)" already exists (id=96)
+[2026-03-26T20:01:33.698Z] [INFO] [phase3/visit-types] Visit type "Discoloration (Hyperigmentation / Melasma)" already exists (id=97)
+[2026-03-26T20:01:33.700Z] [INFO] [phase3/visit-types] Visit type "Nail Disorder" already exists (id=98)
+[2026-03-26T20:01:33.700Z] [INFO] [phase3/visit-types] Complete: 14 total, 0 imported, 14 updated, 0 skipped, 0 errored
+[2026-03-26T20:01:33.700Z] [INFO] [phase3/global-questions] Starting global questions import...
+[2026-03-26T20:01:33.702Z] [INFO] [phase3/global-questions] Question "What brings you in today?" already exists (id=52)
+[2026-03-26T20:01:33.703Z] [INFO] [phase3/global-questions] Question "Do you have any other medical conditions (diabetes, psoriasis, etc.)?" already exists (id=53)
+[2026-03-26T20:01:33.704Z] [INFO] [phase3/global-questions] Question "Are you currently taking any medications?" already exists (id=54)
+[2026-03-26T20:01:33.704Z] [INFO] [phase3/global-questions] Question "Do you have any known allergies?" already exists (id=55)
+[2026-03-26T20:01:33.705Z] [INFO] [phase3/global-questions] Question "Are you currently pregnant or breastfeeding?" already exists (id=56)
+[2026-03-26T20:01:33.706Z] [INFO] [phase3/global-questions] Question "Do you have a history of skin cancer? If yes, what kind?" already exists (id=57)
+[2026-03-26T20:01:33.707Z] [INFO] [phase3/global-questions] Question "Do you have a history of immunosuppression?" already exists (id=58)
+[2026-03-26T20:01:33.708Z] [INFO] [phase3/global-questions] Question "Do you have a pacemaker?" already exists (id=59)
+[2026-03-26T20:01:33.709Z] [INFO] [phase3/global-questions] Question "Do you have any joint replacements?" already exists (id=60)
+[2026-03-26T20:01:33.709Z] [INFO] [phase3/global-questions] Complete: 9 total, 0 imported, 9 updated, 0 skipped, 0 errored
+[2026-03-26T20:01:33.709Z] [INFO] [phase3/organization-update] Updating organization fields...
+[2026-03-26T20:01:33.711Z] [INFO] [phase3/organization-update] Organization already has NPI set, nothing to update
+[2026-03-26T20:01:33.711Z] [INFO] [phase3/encounter-events] Starting encounter events import...
+[2026-03-26T20:01:34.112Z] [INFO] [phase3/encounter-events] Parsed events: 0 encounters with vitals, 10759 with other events
+[2026-03-26T20:01:47.233Z] [INFO] [phase3/encounter-events] Complete: 53796 total, 10759 imported, 0 updated, 0 skipped, 0 errored
+[2026-03-26T20:01:47.233Z] [INFO] [phase3/encounter-diagnoses] Starting encounter-diagnoses link import...
+[2026-03-26T20:01:47.374Z] [INFO] [phase3/encounter-diagnoses] Found 41697 encounter-diagnosis links
+[2026-03-26T20:01:47.417Z] [INFO] [phase3/encounter-diagnoses] Grouped diagnoses for 10074 encounters (0 skipped)
+[2026-03-26T20:01:57.983Z] [INFO] [phase3/encounter-diagnoses] Complete: 41697 total, 10074 imported, 0 updated, 0 skipped, 0 errored
+[2026-03-26T20:01:57.983Z] [INFO] [phase3/encounter-addendums] Starting encounter addendums import...
+[2026-03-26T20:01:57.984Z] [INFO] [phase3/encounter-addendums] Found 144 addendum records
+[2026-03-26T20:01:57.984Z] [INFO] [phase3/encounter-addendums] Grouped addendums for 139 encounters
+[2026-03-26T20:01:58.066Z] [INFO] [phase3/encounter-addendums] Complete: 144 total, 139 imported, 0 updated, 0 skipped, 0 errored
+[2026-03-26T20:01:58.066Z] [INFO] [phase3/encounter-observations] Starting encounter observations import...
+[2026-03-26T20:01:58.067Z] [INFO] [phase3/encounter-observations] Found 120 observation records
+[2026-03-26T20:01:58.067Z] [INFO] [phase3/encounter-observations] Grouped observations for 40 encounters
+[2026-03-26T20:01:58.092Z] [INFO] [phase3/encounter-observations] Complete: 120 total, 40 imported, 0 updated, 0 skipped, 0 errored
+[2026-03-26T20:01:58.092Z] [INFO] [phase3/encounter-medications] Starting encounter-medications link import...
+[2026-03-26T20:01:58.099Z] [INFO] [phase3/encounter-medications] Found 5746 encounter-medication links
+[2026-03-26T20:01:58.104Z] [INFO] [phase3/encounter-medications] Grouped medications for 3440 encounters
+[2026-03-26T20:02:00.297Z] [INFO] [phase3/encounter-medications] Complete: 5746 total, 3440 imported, 0 updated, 20 skipped, 0 errored
+[2026-03-26T20:02:00.297Z] [INFO] [phase3/health-concerns] Starting health concerns import...
+[2026-03-26T20:02:00.300Z] [INFO] [phase3/health-concerns] Found 24 health concern records
+[2026-03-26T20:02:00.300Z] [INFO] [phase3/health-concerns] Grouped concerns for 24 patients
+[2026-03-26T20:02:00.329Z] [INFO] [phase3/health-concerns] Complete: 24 total, 24 imported, 0 updated, 0 skipped, 0 errored
+[2026-03-26T20:02:00.329Z] [INFO] [phase3/med-history] Starting medical history import...
+[2026-03-26T20:02:00.333Z] [INFO] [phase3/med-history] Found 11 med history records
+[2026-03-26T20:02:00.333Z] [INFO] [phase3/med-history] Grouped history for 7 patients
+[2026-03-26T20:02:00.359Z] [INFO] [phase3/med-history] Complete: 11 total, 7 imported, 0 updated, 0 skipped, 0 errored
+[2026-03-26T20:02:00.359Z] [INFO] [phase3/patient-conditions] Starting patient conditions import...
+[2026-03-26T20:02:00.361Z] [INFO] [phase3/patient-conditions] Found 4 condition records
+[2026-03-26T20:02:00.365Z] [INFO] [phase3/patient-conditions] Complete: 4 total, 0 imported, 0 updated, 4 skipped, 0 errored
+[2026-03-26T20:02:00.365Z] [INFO] [phase3/pinned-notes] Starting pinned notes import...
+[2026-03-26T20:02:00.366Z] [INFO] [phase3/pinned-notes] Found 6 pinned note records
+[2026-03-26T20:02:00.366Z] [INFO] [phase3/pinned-notes] Grouped pinned notes for 6 patients
+[2026-03-26T20:02:00.372Z] [INFO] [phase3/pinned-notes] Complete: 6 total, 6 imported, 0 updated, 0 skipped, 0 errored
+[2026-03-26T20:02:00.372Z] [INFO] [phase3/lab-result-notes] Starting lab result notes import...
+[2026-03-26T20:02:00.376Z] [INFO] [phase3/lab-result-notes] Found 557 lab result notes
+[2026-03-26T20:02:00.418Z] [INFO] [phase3/lab-result-notes] Collected notes for 498 patients (557 result notes, 15941 observation notes)
+[2026-03-26T20:02:01.906Z] [WARN] [phase3/lab-result-notes] 402 patients had result notes but no lab orders in SubQDocs
+[2026-03-26T20:02:01.906Z] [INFO] [phase3/lab-result-notes] Complete: 498 total, 96 imported, 0 updated, 475 skipped, 0 errored
+[2026-03-26T20:02:01.906Z] [INFO] [phase3/lab-order-diagnoses] Starting lab order item diagnoses import...
+[2026-03-26T20:02:01.912Z] [INFO] [phase3/lab-order-diagnoses] Found 1949 lab order item diagnosis records
+[2026-03-26T20:02:01.914Z] [INFO] [phase3/lab-order-diagnoses] Grouped diagnoses for 535 lab orders
+[2026-03-26T20:02:03.300Z] [INFO] [phase3/lab-order-diagnoses] Complete: 1949 total, 535 imported, 0 updated, 0 skipped, 0 errored
+[2026-03-26T20:02:03.300Z] [INFO] [main] ═══ PHASE 3 COMPLETE ═══
+[2026-03-26T20:02:03.300Z] [INFO] [main] ╔══════════════════════════════════════════╗
+[2026-03-26T20:02:03.300Z] [INFO] [main] ║  IMPORT COMPLETE                         ║
+[2026-03-26T20:02:03.300Z] [INFO] [main] ╚══════════════════════════════════════════╝

@@ -1,0 +1,4 @@
+[2026-03-31T19:39:37.477Z] [INFO] [main] ╔══════════════════════════════════════════╗
+[2026-03-31T19:39:37.479Z] [INFO] [main] ║  Practice Fusion -> SubQDocs Import      ║
+[2026-03-31T19:39:37.479Z] [INFO] [main] ╚══════════════════════════════════════════╝
+[2026-03-31T19:39:38.284Z] [ERROR] [main] Database connection failed: password authentication failed for user "subqdocs"
